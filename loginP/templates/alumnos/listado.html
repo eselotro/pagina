@@ -1,0 +1,38 @@
+{% extends 'alumnos/base.html' %}
+{% block title %}Lista de Alumnos{% endblock %}
+
+{% block content %}
+<h1>Listado de Usuarios</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>DNI</th>            
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>foto</th>
+            <th>Acciones</th>
+            
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.dni }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>
+                {% if usuario.foto %}
+                <img src="{{ url_for('uploads', filename=usuario.foto) }}" width="100" height="90" alt="Foto de usuario">
+                {% else %}
+                Sin foto
+                {% endif %}
+            </td>
+            <td><a button type="button" class="btn btn-primary" href="editar/{{usuario.id}}">Editar</button></a>          
+                <a button type="button" class="btn btn-danger" href="#" onclick="confirmarBorrado( {{ usuario.id }} ); return false;">Eliminar</button></a>
+            </td>
+            <!-- Incluir más campos según los campos de tu tabla usuarios -->
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
