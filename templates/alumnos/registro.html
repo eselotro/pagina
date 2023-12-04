@@ -1,0 +1,61 @@
+{% extends 'alumnos/base.html' %}
+{% block title %}Registrarse{% endblock %}
+
+
+<div>
+  <form method="post" action="nuevo-registro" enctype="multipart/form-data">  
+    DNI:        <input type="text" name="txtDni" id="txtDni"><br>
+    Nombre:     <input type="text" name="txtNombre" id="txtNombre"><br>    
+    Apellido:   <input type="text" name="txtApellido" id="txtApellido"><br>
+    Correo:     <input type="text" name="txtCorreo" id="txtCorreo"><br> 
+    Contraseña: <input type="text" name="txtPassword" id="txtPassword"><br>     
+    Foto:       <input type="file" name="txtFoto" id="txtFoto"><br>    
+                <input type="submit" value="Registrarse">
+  </form> 
+</div>
+{% block content %}
+<h1>REGISTRO</h1>
+<div class="flex-container">
+  <div class="container_r">
+    <form method="post" action="nuevo-registro" enctype="multipart/form-data">  
+      {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      {% endif %}
+      {% if mensaje_registro %}
+      <div class="alert alert-danger" role="alert">
+        {{ mensaje_registro }}
+      </div>
+      {% endif %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">DNI</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtDni" id="txtDni">
+      </div>
+      <div class="row g-3">
+        <div class="col">
+          <label for="exampleInputEmail1" class="form-label">Nobre</label>
+          <input type="text" class="form-control" placeholder="Ingrese un nombre" aria-label="First name" name="txtNombre" id="txtNombre">
+        </div>
+        <div class="col">
+          <label for="exampleInputEmail1" class="form-label">Apellido</label>
+          <input type="text" class="form-control" placeholder="Ingrese un apellido" aria-label="Last name" name="txtApellido" id="txtApellido">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtCorreo" id="txtCorreo">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="txtPassword" id="txtPassword">
+      </div>
+      <div class="mb-3">
+        <label for="txtFoto" class="form-label">Subi una foto</label>
+        <input class="form-control" type="file" id="txtFoto" name="txtFoto">
+      </div>
+      <button type="submit" class="btn btn-primary">Registrarse</button>  
+    </form> 
+  </div>
+</div>
+{% endblock %}
