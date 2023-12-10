@@ -2,8 +2,6 @@
 
 
 .container {
-    width: 30% !important; 
-    align-content: center;
     margin-top: 2rem;
     background-color: beige;
 }

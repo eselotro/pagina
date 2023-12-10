@@ -4,7 +4,7 @@
 
 {% block content %}
 {% if resultados %}
-<h1>RESULTADO DE TU BUSQUEDA</h1>
+<h1 class="text-center">RESULTADO DE TU BUSQUEDA</h1>
     <table class="table">
         <thead>
             <tr>
@@ -22,8 +22,8 @@
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.apellido }}</td>
                 <td>{{ usuario.correo }}</td>
-                <td><a button type="button" class="btn btn-primary" href="editar/{{usuario.id}}">Editar</button></a>          
-                    <a button type="button" class="btn btn-danger" href="#" onclick="confirmarBorrado( {{ usuario.id }} ); return false;">Eliminar</button></a>
+                <td><a button type="button" class="btn btn-primary w-100 mb-2" href="editar/{{usuario.id}}">Editar</button></a>          
+                    <a button type="button" class="btn btn-danger w-100" href="#" onclick="confirmarBorrado( {{ usuario.id }} ); return false;">Eliminar</button></a>
                 </td>
             </tr>
             {% endfor %}

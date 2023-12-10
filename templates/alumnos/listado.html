@@ -2,14 +2,15 @@
 {% block title %}Lista de Alumnos{% endblock %}
 
 {% block content %}
-<h1>Listado de Usuarios</h1>
+<div class="table-responsive">
+    <h1 class="text-center">Listado de Usuarios</h1>
     <table class="table table-striped">
         <tr>
             <th>#</th>
             <th>DNI</th>            
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Correo</th>
+            <th class="d-none d-md-table-cell">Correo</th>
             <th>foto</th>
             <th>Acciones</th>
             
@@ -20,7 +21,7 @@
             <td>{{ usuario.dni }}</td>
             <td>{{ usuario.nombre }}</td>
             <td>{{ usuario.apellido }}</td>
-            <td>{{ usuario.correo }}</td>
+            <td class="d-none d-md-table-cell">{{ usuario.correo }}</td>
             <td>
                 {% if usuario.foto %}
                 <img src="{{ url_for('uploads', filename=usuario.foto) }}" width="100" height="90" alt="Foto de usuario">
@@ -28,11 +29,12 @@
                 Sin foto
                 {% endif %}
             </td>
-            <td><a button type="button" class="btn btn-primary" href="editar/{{usuario.id}}">Editar</button></a>          
-                <a button type="button" class="btn btn-danger" href="#" onclick="confirmarBorrado( {{ usuario.id }} ); return false;">Eliminar</button></a>
+            <td><a button type="button" class="btn btn-primary w-100 mb-2" href="editar/{{usuario.id}}">Editar</button></a>          
+                <a button type="button" class="btn btn-danger w-100" href="#" onclick="confirmarBorrado( {{ usuario.id }} ); return false;">Eliminar</button></a>
             </td>
-            <!-- Incluir más campos según los campos de tu tabla usuarios -->
+            <!-- Incluir más campos según los campos de la tabla usuarios -->
         </tr>
         {% endfor %}
     </table>
 {% endblock %}
+</div>

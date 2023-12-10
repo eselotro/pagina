@@ -1,0 +1,42 @@
+<!-- Contenido de la Barra Lateral -->
+
+<ul class="nav flex-column ">
+    {% if session.get('ingresado') %}
+        {% if session.get('id_rol') == 1 %}
+        <div class="format bg-dark-subtle">
+            {% if session.ingresado %}
+            <p> Bienvenido, {{ session.n_usuario }}</p>
+            <hr>    
+                            
+            {% endif %}
+        </div>
+        <li class="nav-item">
+            <a class="nav-link"href="/listar" aria-disabled="true">Lista Alumnos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"href="/registro" aria-disabled="true">Registrar Alumnos</a>
+        </li>
+            {% elif session.get('id_rol') == 2 %}
+        <div class="format bg-dark-subtle">
+                {% if session.ingresado %}
+                <p> Bienvenido, {{ session.n_usuario }}</p>
+                {% endif %}
+        </div>
+        <li class="nav-item">
+            <a class="nav-link"href="/perfil" aria-disabled="true">Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"href="/materias" aria-disabled="true">Materias</a>
+        </li>
+        {% endif %}
+
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Ingresar</a>
+        </li>
+        {% endif %}
+    <!-- Más enlaces aquí -->
+</ul>
+
+
+

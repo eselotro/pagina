@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, Response, url_for, session, send_from_directory
+from flask import render_template, request, redirect, Response, url_for, session, send_from_directory, jsonify
 from flask_mysqldb import MySQL,MySQLdb
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -25,6 +25,15 @@ app.config['CARPETA'] = CARPETA
 def home():
     return render_template('alumnos/index.html', mostrar_sidebar=False)
 
+#esto para materias
+@app.route('/materias')
+def materias():
+    return render_template('alumnos/materias.html', mostrar_sidebar=True)
+#esto para perfil
+@app.route('/perfil')
+def perfil():
+    return render_template('alumnos/perfil.html', mostrar_sidebar=True)
+
 #aca accedemos a la pagina para iniciar sesion
 @app.route('/login')
 def login():
@@ -40,6 +49,7 @@ def usuario():
         _password = request.form ['txtPassword']
 
         cur = mysql.connection.cursor()
+
         cur.execute('SELECT * FROM usuarios WHERE correo = %s and password = %s', (_correo, _password)) 
         account = cur.fetchone()
         cur.close()
@@ -49,6 +59,11 @@ def usuario():
             session['id'] = account['id']
             session['id_rol'] = account['id_rol']
             session['n_usuario'] = account['nombre']
+            session['n_apellido'] = account['apellido']
+            session['foto'] = account['foto']
+            session['dni'] = account['dni']
+    
+
 
             if session['id_rol'] == 1:
                 return render_template("/alumnos/admin.html", mostrar_sidebar=True)
@@ -56,6 +71,7 @@ def usuario():
                 return render_template("/alumnos/userLog.html", mostrar_sidebar=True)
         else:
             return render_template('/alumnos/login.html', mensaje_error="Usuario o contraseña incorrectos!")
+        
     
 
 # SECCION DE BUSQUEDA
@@ -80,9 +96,9 @@ def buscar():
         cur.close()
         
         if not resultados:
-            return render_template('/alumnos/resultados_busqueda.html', resultados=resultados, mensaje_resultado="No Hay conincidencias en la busqueda....revisa los datos ingresado!")
+            return render_template('/alumnos/resultados_busqueda.html', resultados=resultados, mensaje_resultado="No Hay conincidencias en la busqueda....revisa los datos ingresado!", mostrar_sidebar=True)
 
-        return render_template('/alumnos/resultados_busqueda.html', resultados=resultados)
+        return render_template('/alumnos/resultados_busqueda.html', resultados=resultados, mostrar_sidebar=True)
     
     return redirect(url_for('home'))
 
@@ -133,6 +149,7 @@ def listar():
     
     return render_template("alumnos/listado.html",usuarios=usuarios, mostrar_sidebar=True)
 
+
 #----------EDITAR USUARIOS----------
 @app.route('/editar/<int:id>')
 def editar(id):
@@ -142,7 +159,7 @@ def editar(id):
     usuarios = cur.fetchall()
     cur.close()
 
-    return render_template('alumnos/editar.html', usuarios=usuarios)
+    return render_template('alumnos/editar.html', usuarios=usuarios, mostrar_sidebar=True)
 
 
 #---------ACTUALIZAR ALUMNOS-----------------
@@ -236,9 +253,6 @@ def logout():
 
     return redirect(url_for('home'))
 
-
-
-    
     
     
 if __name__ == '__main__':

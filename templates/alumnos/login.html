@@ -3,44 +3,37 @@
 
 
 {% block content %}
-<h1>HOLA BIENVENIDO!!</h1>
-  <p>NECESITAS UN USUARIO Y CONTRASEÑA PARA PODER ACCEDER AL PANEL Y VER TUS MATERIAS</p>
-  <div class="container">
-    <form method="post" action="acceso-usuario">  
-      {% if mensaje_error %}
-      <div class="alert alert-danger" role="alert">
-        {{ mensaje_error }}
+<div style="background-image: url('https://us.123rf.com/450wm/sputanski/sputanski1606/sputanski160600010/60393187-resumen-de-vectores-de-colores-de-fondo-material-de-la-plaza-para-el-sitio-web-tel%C3%A9fono-impresi%C3%B3n.jpg');
+height: 700px; margin-top: 0px; background-size:cover;">
+  <h1 class="text-center">Ingrese su correo y contraseña</h1> 
+  <div class="container col-md-6">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="post" action="acceso-usuario">  
+          {% if mensaje_error %}
+          <div class="alert alert-danger" role="alert">
+            {{ mensaje_error }}
+          </div>
+          {% endif %}
+          {% if mensaje_registro %}
+          <div class="alert alert-danger" role="alert">
+            {{ mensaje_registro }}
+          </div>
+          {% endif %}
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label mt-4">Correo</label>
+            <input type="email" class="form-control" aria-describedby="emailHelp" name="txtCorreo" id="txtCorreo">
+            <div id="emailHelp" class="form-text">El colegio jamas compartirá su correo</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="txtPassword" id="txtPassword">
+            <div id="emailHelp" class="form-text">Nunca comparta su contraseña</div>
+          </div>
+          <button type="submit" class="btn btn-primary mb-3 w-100" >Ingresar</button>
+        </form> 
       </div>
-      {% endif %}
-      {% if mensaje_registro %}
-      <div class="alert alert-danger" role="alert">
-        {{ mensaje_registro }}
-      </div>
-      {% endif %}
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Correo</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp" name="txtCorreo" id="txtCorreo">
-        <div id="emailHelp" class="form-text">El colegio jamas compartira su correo</div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" name="txtPassword" id="txtPassword">
-        <div id="emailHelp" class="form-text">Nunca comparta su contraseña</div>
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Ingresar</button>
-      
-      
-    </form> 
+    </div>
   </div>
+</div>
 {% endblock %}
-  
-  
-  Correo:     <input type="text" name="txtCorreo" id="txtCorreo"><br> 
-  Contraseña: <input type="text" name="txtPassword" id="txtPassword"><br>         
-              <input type="submit" value="ingresar">
-
-

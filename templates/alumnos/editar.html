@@ -2,51 +2,47 @@
 {% block title %}Editar Alumnos{% endblock %}
 
 {% block content %}
-
-<h1>FORMULARIO DE ACTUALIZACION</h1>
-
-{% for usuario in usuarios %}  
-<div class="flex-container">
-  <div class="container_r">
-    <form method="post" action="/actualizar" enctype="multipart/form-data">  
-        <div class="mb-3">
-            <label for="txtID" class="form-label">ID</label>
-            <input type="hidden" value=" {{ usuario.id }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtID" id="txtID">
-        </div>
-        <div class="mb-3">
-        <label for="txtDni" class="form-label">DNI</label>
-        <input type="text" value="{{ usuario.dni }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtDni" id="txtDni">
-      </div>
-      <div class="row g-3">
-        <div class="col">
-          <label for="txtNombre" class="form-label">Nobre</label>
-          <input type="text" value="{{ usuario.nombre }}" class="form-control" placeholder="Ingrese un nombre" aria-label="First name" name="txtNombre" id="txtNombre">
-        </div>
-        <div class="col">
-          <label for="txtApellido" class="form-label">Apellido</label>
-          <input type="text" value="{{ usuario.apellido }}" class="form-control" placeholder="Ingrese un apellido" aria-label="Last name" name="txtApellido" id="txtApellido">
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="txtCorreo" class="form-label">Correo</label>
-        <input type="email" value="{{ usuario.correo }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtCorreo" id="txtCorreo">
-      </div>
-      <div class="mb-3">
-        <label for="txtPassword" class="form-label">Contraseña</label>
-        <input type="password" value="{{ usuario.password }}" class="form-control" id="exampleInputPassword1" name="txtPassword" id="txtPassword">
-      </div>
-      <div class="mb-3">
-        <label for="txtFoto" class="form-label">Subi una foto</label>
-        <img class="img-thumbnail" width="100" src="{{ url_for('uploads', filename=usuario.foto) }}" alt="">
-        <input class="form-control" type="file" id="txtFoto" name="txtFoto">
-      </div>
-      <button type="submit" class="btn btn-primary">Actualizar</button>  
-    </form> 
-  </div> 
-</div> 
-
+  <div class="container">
+    <h1 class="text-center">FORMULARIO DE ACTUALIZACION</h1>
+    {% for usuario in usuarios %}
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+          <form method="post" action="/actualizar" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="txtID" class="form-label">ID</label>
+              <input type="hidden" value="{{ usuario.id }}" class="form-control" name="txtID">
+            </div>
+            <div class="mb-3">
+              <label for="txtDni" class="form-label">DNI</label>
+              <input type="text" value="{{ usuario.dni }}" class="form-control" name="txtDni">
+            </div>
+            <div class="row g-3">
+              <div class="col">
+                <label for="txtNombre" class="form-label">Nombre</label>
+                <input type="text" value="{{ usuario.nombre }}" class="form-control" name="txtNombre">
+              </div>
+              <div class="col">
+                <label for="txtApellido" class="form-label">Apellido</label>
+                <input type="text" value="{{ usuario.apellido }}" class="form-control" name="txtApellido">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="txtCorreo" class="form-label">Correo</label>
+              <input type="email" value="{{ usuario.correo }}" class="form-control" name="txtCorreo">
+            </div>
+            <div class="mb-3">
+              <label for="txtPassword" class="form-label">Contraseña</label>
+              <input type="password" value="{{ usuario.password }}" class="form-control" name="txtPassword">
+            </div>
+            <div class="mb-3">
+              <label for="txtFoto" class="form-label">Subir una foto</label>
+              <img class="img-thumbnail" width="100" height="90" src="{{ url_for('uploads', filename=usuario.foto) }}" alt="">
+              <input class="form-control" type="file" id="txtFoto" name="txtFoto">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Actualizar</button>  
+          </form> 
+        </div> 
+      </div> 
     {% endfor %}
-
-    {% endblock %}
-    
-    
+  </div>
+{% endblock %}
